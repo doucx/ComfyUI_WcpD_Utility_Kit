@@ -6,7 +6,7 @@
 # import time
 # import random
 
-BASE_CATEGORY = "WcpD Kit"
+BASE_CATEGORY = "WcpD_Kit"
 
 class MergeStrings:
     def __init__(self):
@@ -20,8 +20,8 @@ class MergeStrings:
                     "default":", ",
                     "multiline": False,
                     }),
-                "text_0": ("STRING", {"forceInput": True}),
-                "text_1": ("STRING", {"forceInput": True}),
+                "base_text": ("STRING", {"forceInput": True}),
+                # "text1": ("STRING", {"forceInput": True}),
             },
         }
 
