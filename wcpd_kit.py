@@ -6,8 +6,9 @@
 # import time
 # import random
 
+BASE_CATEGORY = "WcpD Kit"
 
-class MergeStrings():
+class MergeStrings:
     def __init__(self):
         pass
 
@@ -15,19 +16,25 @@ class MergeStrings():
     def INPUT_TYPES(s):
         return {
             "required": {
-                "text0": ("STRING",),
-                "text1": ("STRING",),
+                "truncation_symbol": ("STRING", {
+                    "default":", ",
+                    "multiline": False,
+                    }),
+                "text_0": ("STRING", {"forceInput": True}),
+                "text_1": ("STRING", {"forceInput": True}),
             },
         }
 
     RETURN_TYPES = ("STRING",)
     FUNCTION = "merge"
-    CATEGORY = "WcpD Kit"
+    CATEGORY = BASE_CATEGORY
 
-    def merge(self, text0: str, text1: str):
-        text = text0 + text1
+    def merge(self, truncation_symbol: str, **kwargs):
+        text = f'{truncation_symbol}'.join(text for text in kwargs.values())
         return (text,)
 
+# A dictionary that contains all nodes you want to export with their names
+# NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
-    "MergeStrings": MergeStrings,
+    "MergeStrings": MergeStrings
 }
