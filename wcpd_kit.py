@@ -33,8 +33,62 @@ class MergeStrings:
         text = f'{truncation_symbol}'.join(text for text in kwargs.values())
         return (text,)
 
-# A dictionary that contains all nodes you want to export with their names
-# NOTE: names should be globally unique
+class StrTuple:
+    def __init__(self) -> None:
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "Str": ("STRING", {
+                    "default":"STRING"
+                })
+            }
+        }
+
+    RETURN_TYPES = ("TUPLE",)
+    FUNCTION = "get_tuple"
+    CATEGORY = BASE_CATEGORY
+
+    def get_tuple(self, Str):
+        return (Str,)
+
+class ExecStrAsCode:
+    def __init__(self) -> None:
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "code": ("STRING", {
+                    "default":
+'''# RETURN is what you want to return
+# import torch
+RETURN = Tuple
+''',
+                "multiline": True,
+                }),
+                "Tuple":("TUPLE", {
+                })
+                ,
+            },
+        }
+
+    RETURN_TYPES = ("TUPLE",)
+    FUNCTION = "exec_str"
+    CATEGORY = BASE_CATEGORY
+
+    def exec_str(self, code:str, Tuple:tuple):
+        print("Warning: Use `exec()` with caution!")
+        RETURN = None
+        local_vars = locals()
+        exec(code, globals(), local_vars)
+        return (local_vars['RETURN'],)
+
 NODE_CLASS_MAPPINGS = {
-    "MergeStrings": MergeStrings
+    "MergeStrings": MergeStrings,
+    "ExecStrAsCode": ExecStrAsCode,
+    "StrTuple": StrTuple
 }
