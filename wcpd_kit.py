@@ -30,29 +30,29 @@ class MergeStrings:
     CATEGORY = BASE_CATEGORY
 
     def merge(self, truncation_symbol: str, **kwargs):
-        text = f'{truncation_symbol}'.join(text for text in kwargs.values())
+        text = f'{truncation_symbol}'.join(kwargs.values())
         return (text,)
 
-class StrTuple:
-    def __init__(self) -> None:
-        pass
+# class StrTuple:
+#     def __init__(self) -> None:
+#         pass
 
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "Str": ("STRING", {
-                    "default":"STRING"
-                })
-            }
-        }
+#     @classmethod
+#     def INPUT_TYPES(s):
+#         return {
+#             "required": {
+#                 "Str": ("STRING", {
+#                     "default":"STRING"
+#                 })
+#             }
+#         }
 
-    RETURN_TYPES = ("TUPLE",)
-    FUNCTION = "get_tuple"
-    CATEGORY = BASE_CATEGORY
+#     RETURN_TYPES = ("TUPLE",)
+#     FUNCTION = "get_tuple"
+#     CATEGORY = BASE_CATEGORY
 
-    def get_tuple(self, Str):
-        return (Str,)
+#     def get_tuple(self, Str):
+#         return (Str,)
 
 class ExecStrAsCode:
     def __init__(self) -> None:
@@ -90,5 +90,5 @@ RETURN = Tuple
 NODE_CLASS_MAPPINGS = {
     "MergeStrings": MergeStrings,
     "ExecStrAsCode": ExecStrAsCode,
-    "StrTuple": StrTuple
+    # "StrTuple": StrTuple
 }
