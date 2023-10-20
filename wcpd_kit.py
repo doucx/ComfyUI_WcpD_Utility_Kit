@@ -88,7 +88,11 @@ class ExecStrAsCode:
         RETURN = None
         local_vars = locals()
         exec(code, globals(), local_vars)
-        return (local_vars['RETURN'],)
+        r = local_vars['RETURN']
+        if isinstance(r, tuple):
+            return r
+        else:
+            raise TypeError("Output must be tuple")
 
 class RandnLatentImage:
     def __init__(self, device="cpu"):
