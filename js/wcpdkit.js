@@ -1,41 +1,20 @@
 import { app } from "/scripts/app.js";
 import {CUSTOM_INT, recursiveLinkUpstream, transformFunc, swapInputs, renameNodeInputs, removeNodeInputs, getDrawColor, computeCanvasSize} from "./utils.js"
 
+// MergeStrings
 app.registerExtension({
 	name: "Comfy.WcpD_Kit.MergeStrings",
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
-        if (nodeData.name === "MergeStrings") {
-			const onNodeCreated = nodeType.prototype.onNodeCreated;
-			nodeType.prototype.onNodeCreated = function () {
+    if (nodeData.name === "MergeStrings") {
+		  const onNodeCreated = nodeType.prototype.onNodeCreated;
+		  nodeType.prototype.onNodeCreated = function () {
 				const r = onNodeCreated ? onNodeCreated.apply(this, arguments) : undefined;
 				
-				this.setProperty("values", [[0, 0, 0, null]])
 
 				this.selected = false
-				this.index = 1
+				this.index = 2
 
-                this.serialize_widgets = true;
-                
-				CUSTOM_INT(
-					this,
-					"index",
-					0,
-					function (v, _, node) {
-
-						let values = node.properties["values"]
-
-						node.widgets[2].value = values[v][0]
-						node.widgets[3].value = values[v][1]
-						node.widgets[4].value = values[v][2]
-					},
-					{ step: 10, max: 1 }
-
-				)
-
-				// CUSTOM_INT(this, "x", 0, function (v, _, node) {transformFunc(this, v, node, 0)}, {step: 80})
-				// CUSTOM_INT(this, "y", 0, function (v, _, node) {transformFunc(this, v, node, 1)}, {step: 80})
-				// CUSTOM_INT(this, "feather", 1, function (v, _, node) {transformFunc(this, v, node, 2)}, {"min": 0.0, "max": 4096, "step": 80, "precision": 0})
-
+        this.serialize_widgets = true;
 				this.getExtraMenuOptions = function(_, options) {
 					options.unshift(
 						{
@@ -51,8 +30,7 @@ app.registerExtension({
 								}
 								renameNodeInputs(this, "text", 1)
 
-								this.properties["values"].splice(index, 0, [0, 0, 0, null])
-								this.widgets[this.index].options.max = inputLenth-1
+								this.widgets[this.index].options.max = inputLenth // -1
 
 								this.setDirtyCanvas(true);
 
@@ -71,8 +49,7 @@ app.registerExtension({
 								}
 								renameNodeInputs(this, "text", 1)
 
-								this.properties["values"].splice(index+1, 0, [0, 0, 0, null])
-								this.widgets[this.index].options.max = inputLenth-1
+								this.widgets[this.index].options.max = inputLenth // -1
 
 								this.setDirtyCanvas(true);
 							},
@@ -126,10 +103,5 @@ app.registerExtension({
 			}
 		}
     },
-	loadedGraphNode(node, _) {
-		if (node.type === "MergeStrings") {
-			node.widgets[node.index].options["max"] = node.properties["values"].length-1
-		}
-	},
 	
 });
