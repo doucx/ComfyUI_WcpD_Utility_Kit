@@ -22,7 +22,7 @@ class MergeStrings:
                     "multiline": False,
                     }),
                 "base_text": ("STRING", {"forceInput": True}),
-                "index": ("INT", {"default": 0, "min": 0, "max": 0, "step": 1}),
+                "index": ("INT", {"default": 0, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
                 # "text": ("STRING", {"forceInput": True}),
             },
         }

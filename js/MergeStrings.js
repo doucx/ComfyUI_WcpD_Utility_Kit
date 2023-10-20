@@ -1,6 +1,6 @@
 import { app } from "/scripts/app.js";
-import {CUSTOM_INT, recursiveLinkUpstream, transformFunc, swapInputs, renameNodeInputs, removeNodeInputs, getDrawColor, computeCanvasSize} from "./utils.js"
-
+import { swapInputs, renameNodeInputs, removeNodeInputs } from "./utils.js"
+// CUSTOM_INT, recursiveLinkUpstream, transformFunc, getDrawColor, computeCanvasSize
 // MergeStrings
 app.registerExtension({
 	name: "Comfy.WcpD_Kit.MergeStrings",
@@ -13,8 +13,10 @@ app.registerExtension({
 
 				this.selected = false
 				this.index = 2
+        this.widgets[this.index].options.max = this.inputs.length-1
 
         this.serialize_widgets = true;
+
 				this.getExtraMenuOptions = function(_, options) {
 					options.unshift(
 						{
