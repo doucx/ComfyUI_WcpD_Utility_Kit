@@ -21,7 +21,7 @@ class MergeStrings:
                     "default":", ",
                     "multiline": False,
                     }),
-                "base_text": ("STRING", {"forceInput": True}),
+                # "base_text": ("STRING", {"forceInput": True}),
                 "index": ("INT", {"default": 0, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
                 # "text": ("STRING", {"forceInput": True}),
             },
@@ -33,6 +33,7 @@ class MergeStrings:
 
     def merge(self, truncation_symbol: str, **kwargs):
         kwargs.pop("index")
+        kwargs.pop("truncation_symbol")
         text = f'{truncation_symbol}'.join(kwargs.values())
         return (text,)
 
