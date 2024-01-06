@@ -10,7 +10,8 @@ import shutil
 import __main__
 from .wcpd_kit import NODE_CLASS_MAPPINGS
 
-JS_DEV_MODE = False #True
+# 想要直接修改js文件的话开启这个，js目录将不会更新
+JS_DEV_MODE = False
 
 print(f'\033[34mWcpD Utility Kit: \033[93mLoading{" with JS_DEV_MODE" if JS_DEV_MODE else ""}\033[0m')
 extentions_folder = os.path.join(os.path.dirname(os.path.realpath(__main__.__file__)),
@@ -19,7 +20,7 @@ javascript_folder = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), "js")
 
 if not JS_DEV_MODE and not os.path.exists(extentions_folder):
-    print('- Making the "web\extensions\WcpD_Kit" folder')
+    print('- Making the "web/extensions/WcpD_Kit" folder')
     os.mkdir(extentions_folder)
 
 result = filecmp.dircmp(javascript_folder, extentions_folder)
