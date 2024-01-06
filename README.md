@@ -1,4 +1,6 @@
 # ComfyUI_WcpD_Utility_Kit
+[English Documentation](./README_en.md) (Translated by ChatGPT)  
+
 ComfyUI的自定义节点,正在建设
 ## 功能:
 ### text
