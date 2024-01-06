@@ -12,7 +12,7 @@ ComfyUI的自定义节点,正在建设
 ![YamlToPrompt](./imgs/YamlToPrompt.png)
 ### image
 #### CopyImage(Wayland)
-复制图片到系统剪贴板  
+复制图片到系统剪贴板，仅支持wayland  
 需要安装`wl-copy`,以及设置`XDG_RUNTIME_DIR`*（可选）*
 ![CopyImage_0](./imgs/CopyImage_0.png)
 ![CopyImage_1](./imgs/CopyImage_1.png)

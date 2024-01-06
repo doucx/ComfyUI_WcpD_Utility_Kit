@@ -13,7 +13,7 @@ Convert Yaml format to comma-separated format for easy viewing and editing.
 ![YamlToPrompt](./imgs/YamlToPrompt.png)
 ### image
 #### CopyImage(Wayland)
-Copy images to the system clipboard.
+Copy images to the system clipboard, only support wayland.
 Requires installation of `wl-copy` and setting `XDG_RUNTIME_DIR` *(optional)*.
 ![CopyImage_0](./imgs/CopyImage_0.png)
 ![CopyImage_1](./imgs/CopyImage_1.png)
